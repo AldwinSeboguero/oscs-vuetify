@@ -2233,6 +2233,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     source: String
@@ -31695,6 +31706,21 @@ var render = function() {
               }
             }
           }),
+          _vm._v(" "),
+          _c(
+            "v-avatar",
+            { attrs: { size: "36px", item: "" } },
+            [
+              _c("v-img", {
+                attrs: {
+                  src:
+                    "http://parsu-oscs.herokuapp.com/img/profile/picture.jpg",
+                  alt: "Vuetify"
+                }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
           _c(
             "v-toolbar-title",
