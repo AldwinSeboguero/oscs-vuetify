@@ -2231,19 +2231,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     source: String
@@ -2253,14 +2240,17 @@ __webpack_require__.r(__webpack_exports__);
       dialog: false,
       drawer: null,
       items: [{
-        icon: 'mdi-contacts',
-        text: 'Contacts'
+        icon: 'mdi-clipboard-text',
+        text: 'Clearance View'
       }, {
         icon: 'mdi-history',
-        text: 'Frequently contacted'
+        text: 'List of Deficiency'
+      }, {
+        icon: 'mdi-cog',
+        text: 'Settings'
       }, {
         icon: 'mdi-content-copy',
-        text: 'Duplicates'
+        text: ''
       }, {
         icon: 'mdi-chevron-up',
         'icon-alt': 'mdi-chevron-down',
@@ -2286,9 +2276,6 @@ __webpack_require__.r(__webpack_exports__);
         }, {
           text: 'Other contacts'
         }]
-      }, {
-        icon: 'mdi-cog',
-        text: 'Settings'
       }, {
         icon: 'mdi-message',
         text: 'Send feedback'
@@ -31709,7 +31696,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-avatar",
-            { attrs: { size: "36px", item: "" } },
+            { attrs: { size: "32px", item: "" } },
             [
               _c("v-img", {
                 attrs: {
@@ -31789,52 +31776,7 @@ var render = function() {
           _c(
             "v-container",
             { staticClass: "fill-height", attrs: { fluid: "" } },
-            [
-              _c(
-                "v-row",
-                { attrs: { align: "center", justify: "center" } },
-                [
-                  _c(
-                    "v-tooltip",
-                    {
-                      attrs: { right: "" },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "activator",
-                          fn: function(ref) {
-                            var on = ref.on
-                            return [
-                              _c(
-                                "v-btn",
-                                _vm._g(
-                                  {
-                                    attrs: {
-                                      href: _vm.source,
-                                      icon: "",
-                                      large: "",
-                                      target: "_blank"
-                                    }
-                                  },
-                                  on
-                                ),
-                                [
-                                  _c("v-icon", { attrs: { large: "" } }, [
-                                    _vm._v("mdi-code-tags")
-                                  ])
-                                ],
-                                1
-                              )
-                            ]
-                          }
-                        }
-                      ])
-                    },
-                    [_vm._v(" "), _c("span", [_vm._v("Source")])]
-                  )
-                ],
-                1
-              )
-            ],
+            [_c("v-row", { attrs: { align: "center", justify: "center" } })],
             1
           )
         ],

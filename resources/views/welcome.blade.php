@@ -15,6 +15,7 @@
     <body>
         <div id="app">
             <example-component></example-component>
+            {{-- http://code.meta-platform.com/assets/mdi/preview.html --}}
         </div>
     </body>
 </html>

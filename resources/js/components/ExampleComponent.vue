@@ -83,7 +83,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         
        <v-avatar
-          size="36px"
+          size="32px"
           item
         >
             <v-img
@@ -136,20 +136,7 @@
           align="center"
           justify="center"
         >
-          <v-tooltip right>
-            <template v-slot:activator="{ on }">
-              <v-btn
-                :href="source"
-                icon
-                large
-                target="_blank"
-                v-on="on"
-              >
-                <v-icon large>mdi-code-tags</v-icon>
-              </v-btn>
-            </template>
-            <span>Source</span>
-          </v-tooltip>
+         
         </v-row>
       </v-container>
     </v-main>
@@ -258,9 +245,10 @@
       dialog: false,
       drawer: null,
       items: [
-        { icon: 'mdi-contacts', text: 'Contacts' },
-        { icon: 'mdi-history', text: 'Frequently contacted' },
-        { icon: 'mdi-content-copy', text: 'Duplicates' },
+        { icon: 'mdi-clipboard-text', text: 'Clearance View' },
+        { icon: 'mdi-history', text: 'List of Deficiency' },
+        { icon: 'mdi-cog', text: 'Settings' },
+        { icon: 'mdi-content-copy', text: '' },
         {
           icon: 'mdi-chevron-up',
           'icon-alt': 'mdi-chevron-down',
@@ -283,7 +271,6 @@
             { text: 'Other contacts' },
           ],
         },
-        { icon: 'mdi-cog', text: 'Settings' },
         { icon: 'mdi-message', text: 'Send feedback' },
         { icon: 'mdi-help-circle', text: 'Help' },
         { icon: 'mdi-cellphone-link', text: 'App downloads' },
