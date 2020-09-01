@@ -10,17 +10,30 @@ import Vue from 'vue';
 window.Vue = require('vue');
 
 import Vuetify from "vuetify";
-import 'vuetify/dist/vuetify.min.css'
-// import 'material-design-icons-iconfont/dist/material-design-icons.css' 
-import '@mdi/font/css/materialdesignicons.css'
+import 'vuetify/dist/vuetify.min.css';
+import '@mdi/font/css/materialdesignicons.css';
+import MainApp from './components/MainApp.vue';
+import VueRouter from 'vue-router';
+import {routes} from './routes';
 Vue.use(Vuetify); 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+  routes,
+  mode : 'history'
+})
+
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
  
 
 const app = new Vue({ 
     el: '#app',
+    router,
     vuetify: new Vuetify(),
     icons: {
         iconfont: 'md',
+      },
+      components: {
+        MainApp
       },
 });
