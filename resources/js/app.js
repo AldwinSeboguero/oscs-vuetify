@@ -13,10 +13,17 @@ import Vuetify from "vuetify";
 import 'vuetify/dist/vuetify.min.css';
 import '@mdi/font/css/materialdesignicons.css';
 import MainApp from './components/MainApp.vue';
+import { Form, HasError, AlertError } from 'vform'
+
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
 import VueRouter from 'vue-router';
 import {routes} from './routes';
+import store from './store'
+window.Form = Form;
 Vue.use(Vuetify); 
 Vue.use(VueRouter);
+
 
 const router = new VueRouter({
   routes,
@@ -29,6 +36,7 @@ const router = new VueRouter({
 const app = new Vue({ 
     el: '#app',
     router,
+    store,
     vuetify: new Vuetify(),
     icons: {
         iconfont: 'md',

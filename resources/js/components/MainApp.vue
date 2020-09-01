@@ -186,6 +186,7 @@
         { icon: 'mdi-clipboard-text', text: 'Clearance View', link : '/admin/clearance-view' },
         { icon: 'mdi-history', text: 'List of Deficiency' },
         { icon: 'mdi-cog', text: 'Settings' },
+        { icon: 'mdi-cog', text: 'Login' ,link : '/admin/login'},
         // { icon: 'mdi-content-copy', text: '' },
         // {
         //   icon: 'mdi-chevron-up',

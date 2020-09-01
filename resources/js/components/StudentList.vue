@@ -2,7 +2,7 @@
   <v-data-table
     :headers="headers"
     :items="desserts"
-    sort-by="calories"
+    sort-by="fat"
     class="elevation-1"
   >
     <template v-slot:top>
@@ -121,7 +121,7 @@
 
     computed: {
       formTitle () {
-        return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+        return this.editedIndex === -1 ? 'Add Student' : 'Edit Item'
       },
     },
 
