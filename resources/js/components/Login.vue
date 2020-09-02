@@ -62,13 +62,13 @@ import {login} from '../helpers/auth';
     }),
     methods: {
       authenticate(){
-        // this.$store.dispatch("login");
+         this.$store.dispatch("login");
         // Swal.showLoading()
         login(this.$data.form)
         .then((res)=>{
           
-          // this.$store.commit("loginSuccess",res)
-          this.$router.push('/admin/student-list')
+          this.$store.commit("loginSuccess",res)
+          this.$router.push('/admin/home')
         })
         .catch((error)=>{ 
          

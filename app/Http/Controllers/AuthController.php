@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\User;
-
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
@@ -79,7 +79,11 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
+            'user' => $this->guard()->user(),
             'expires_in' => auth()->factory()->getTTL() * 60
         ]);
+    }
+    public function guard(){
+        return Auth::guard('api');
     }
 }

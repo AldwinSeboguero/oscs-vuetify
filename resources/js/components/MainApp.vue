@@ -5,17 +5,73 @@
       :clipped="$vuetify.breakpoint.lgAndUp"
       app
     >
-      <v-list
-      nav
-      dense
-    >
-      <v-list-item v-for="(item, i) in items" :key="i" :to="item.link" link>
-        <v-list-item-icon>
-          <v-icon>{{item.icon}}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>{{item.text}}</v-list-item-title>
-      </v-list-item>
-    </v-list>
+     <v-list dense>
+        <template v-for="item in items">
+          <v-row
+            v-if="item.heading"
+            :key="item.heading"
+            align="center"
+          >
+            <v-col cols="6">
+              <v-subheader v-if="item.heading">
+                {{ item.heading }}
+              </v-subheader>
+            </v-col>
+            <v-col
+              cols="6"
+              class="text-center"
+            >
+              <a
+                href="#!"
+                class="body-2 black--text"
+              >EDIT</a>
+            </v-col>
+          </v-row>
+          <v-list-group
+            v-else-if="item.children"
+            :key="item.text"
+            v-model="item.model"
+            :prepend-icon="item.model ? item.icon : item['icon-alt']"
+            append-icon=""
+          >
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title>
+                  {{ item.text }}
+                </v-list-item-title>
+              </v-list-item-content>
+            </template>
+            <v-list-item
+              v-for="(child, i) in item.children"
+              :key="i"
+              :to="item.link" link
+            >
+              <v-list-item-action v-if="child.icon">
+                <v-icon>{{ child.icon }}</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>
+                  {{ child.text }}
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-group>
+          <v-list-item
+            v-else
+            :key="item.text"
+             :to="item.link" link
+          >
+            <v-list-item-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>
+                {{ item.text }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+      </v-list>
     </v-navigation-drawer>
 
     <v-app-bar
@@ -182,11 +238,27 @@
       dialog: false,
       drawer: null,
       items: [
-        { icon: 'mdi-clipboard-text', text: 'Student List', link : '/admin/student-list' },
+        { icon: 'mdi-account-multiple', text: 'Student List', link : '/admin/student-list' },
+            {
+          icon: 'mdi-chevron-up',
+          'icon-alt': 'mdi-chevron-down',
+          text: 'Admin Setup',
+          model: false,
+          children: [
+            { text: 'Campus' },
+            { text: 'Colleges' },
+            { text: 'Programs' },
+            { text: 'Sections' },
+            { text: 'Semester' },
+            { text: 'Graduation Schedule' },
+            { text: 'Purposes' },
+          ],
+        },
         { icon: 'mdi-clipboard-text', text: 'Clearance View', link : '/admin/clearance-view' },
         { icon: 'mdi-history', text: 'List of Deficiency' },
         { icon: 'mdi-cog', text: 'Settings' },
-        { icon: 'mdi-cog', text: 'Login' ,link : '/admin/login'},
+        { icon: 'mdi-logout', text: 'Login' ,link : '/admin/login'},
+    
         // { icon: 'mdi-content-copy', text: '' },
         // {
         //   icon: 'mdi-chevron-up',

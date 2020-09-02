@@ -19,7 +19,8 @@ Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 import VueRouter from 'vue-router';
 import {routes} from './routes';
-import store from './store'
+import store from './store';
+import {initialize} from './helpers/general'
 window.Form = Form;
 Vue.use(Vuetify); 
 Vue.use(VueRouter);
@@ -32,7 +33,7 @@ const router = new VueRouter({
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
  
-
+initialize(store,router);
 const app = new Vue({ 
     el: '#app',
     router,
