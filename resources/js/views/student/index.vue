@@ -14,7 +14,7 @@
                 :headers="headers" 
                 :items="students" 
                 class="elevation-1"
-                
+                loading="true"
                 >
                    
                 </v-data-table>

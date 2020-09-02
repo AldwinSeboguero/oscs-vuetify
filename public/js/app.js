@@ -2772,39 +2772,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       dialog: false,
+      search: '',
       headers: [{
         text: 'Student Number',
         align: 'start',
         sortable: false,
-        value: 'name'
+        value: 'student_number'
       }, {
         text: 'Name',
-        value: 'calories'
+        value: 'name'
       }, {
         text: 'Year',
-        value: 'fat'
+        value: 'year'
       }, {
         text: 'Section',
-        value: 'carbs'
+        value: 'section_id'
       }, {
         text: 'Program',
-        value: 'protein'
+        value: 'program_id'
       }, {
         text: 'Campus',
-        value: 'actions',
-        sortable: false
+        value: 'campus_id'
       }, {
         text: 'Activation Code',
-        value: 'actions',
-        sortable: false
+        value: 'initial_password'
       }, {
         text: 'Actions',
-        value: 'actions',
-        sortable: false
+        value: 'actions'
       }],
       desserts: [],
       editedIndex: -1,
@@ -2826,8 +2833,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     formTitle: function formTitle() {
-      return this.editedIndex === -1 ? 'Add Student' : 'Edit Item';
+      return this.editedIndex === -1 ? 'New item' : 'Edit Item';
+    },
+    students: function students() {
+      return this.$store.getters.students;
     }
+  },
+  mounted: function mounted() {
+    if (this.students.length) {
+      return;
+    }
+
+    this.$store.dispatch('getStudents');
   },
   watch: {
     dialog: function dialog(val) {
@@ -34042,7 +34059,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("v-data-table", {
     staticClass: "elevation-1",
-    attrs: { headers: _vm.headers, items: _vm.desserts, "sort-by": "fat" },
+    attrs: {
+      headers: _vm.headers,
+      items: _vm.students,
+      "sort-by": "fat",
+      search: _vm.search
+    },
     scopedSlots: _vm._u([
       {
         key: "top",
@@ -34054,9 +34076,22 @@ var render = function() {
               [
                 _c("v-toolbar-title", [_vm._v("Student List")]),
                 _vm._v(" "),
-                _c("v-divider", {
-                  staticClass: "mx-4",
-                  attrs: { inset: "", vertical: "" }
+                _c("v-spacer"),
+                _vm._v(" "),
+                _c("v-text-field", {
+                  attrs: {
+                    "append-icon": "mdi-magnify",
+                    label: "Search",
+                    "single-line": "",
+                    "hide-details": ""
+                  },
+                  model: {
+                    value: _vm.search,
+                    callback: function($$v) {
+                      _vm.search = $$v
+                    },
+                    expression: "search"
+                  }
                 }),
                 _vm._v(" "),
                 _c("v-spacer"),
@@ -34381,7 +34416,11 @@ var render = function() {
           _vm._v(" "),
           _c("v-data-table", {
             staticClass: "elevation-1",
-            attrs: { headers: _vm.headers, items: _vm.students }
+            attrs: {
+              headers: _vm.headers,
+              items: _vm.students,
+              loading: "true"
+            }
           }),
           _vm._v(" "),
           _c(

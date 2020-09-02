@@ -1,18 +1,27 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="desserts"
+    :items="students"
     sort-by="fat"
-    class="elevation-1"
+    class="elevation-1" 
+    :search="search"
   >
     <template v-slot:top>
       <v-toolbar flat color="white">
         <v-toolbar-title>Student List</v-toolbar-title>
-        <v-divider
+        <!-- <v-divider
           class="mx-4"
           inset
           vertical
-        ></v-divider>
+        ></v-divider> -->
+       <v-spacer></v-spacer>
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ on, attrs }">
@@ -86,20 +95,20 @@
   export default {
     data: () => ({
       dialog: false,
+      search: '',
       headers: [
-        {
-          text: 'Student Number',
-          align: 'start',
-          sortable: false,
-          value: 'name',
-        },
-        { text: 'Name', value: 'calories' },
-        { text: 'Year', value: 'fat' },
-        { text: 'Section', value: 'carbs' },
-        { text: 'Program', value: 'protein' },
-        { text: 'Campus', value: 'actions', sortable: false },
-        { text: 'Activation Code', value: 'actions', sortable: false },
-        { text: 'Actions', value: 'actions', sortable: false },
+        {text: 'Student Number',
+                align: 'start',
+                sortable: false,
+                value: 'student_number',
+                },
+                { text: 'Name', value: 'name' },
+                { text: 'Year', value: 'year' },
+                { text: 'Section', value: 'section_id' },
+                { text: 'Program', value: 'program_id' },
+                { text: 'Campus', value: 'campus_id'},
+                { text: 'Activation Code', value: 'initial_password'},
+                { text: 'Actions', value: 'actions'},
       ],
       desserts: [],
       editedIndex: -1,
@@ -121,8 +130,17 @@
 
     computed: {
       formTitle () {
-        return this.editedIndex === -1 ? 'Add Student' : 'Edit Item'
+        return this.editedIndex === -1 ? 'New item' : 'Edit Item'
       },
+      students(){
+            return this.$store.getters.students;
+        },
+    },
+     mounted() {
+        if (this.students.length) {
+            return;
+        }
+        this.$store.dispatch('getStudents');
     },
 
     watch: {
