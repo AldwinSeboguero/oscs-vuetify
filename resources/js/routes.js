@@ -9,6 +9,7 @@ export const routes = [
         path: '/admin/login',
         component: Login,
         
+        
     },
     {
         path: '/admin/home',

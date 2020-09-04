@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Student;
+use App\Section;
 
 class StudentController extends Controller
 {
@@ -15,8 +16,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
-        return response()->json(['students'=>$students]);
+        $students = Student::paginate(10); 
+        return response()->json(['students'=>$students ]);
     }
 
     /**

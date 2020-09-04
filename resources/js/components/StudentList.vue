@@ -1,28 +1,35 @@
 <template>
+ <v-container>
   <v-data-table
     :headers="headers"
-    :items="students"
-    sort-by="fat"
+    :items="students" 
     class="elevation-1" 
+    hide-default-footer
     :search="search"
   >
-    <template v-slot:top>
+   
+
+    <template v-slot:top> 
+      
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search" 
+         class="mx-4" 
+      ></v-text-field>
       <v-toolbar flat color="white">
-        <v-toolbar-title>Student List</v-toolbar-title>
+        
+        <v-toolbar-title>Student List
+          
+        </v-toolbar-title>
         <!-- <v-divider
           class="mx-4"
           inset
           vertical
         ></v-divider> -->
        <v-spacer></v-spacer>
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
-        <v-spacer></v-spacer>
+     
+     
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -40,7 +47,9 @@
 
             <v-card-text>
               <v-container>
+                
                 <v-row>
+                  
                   <v-col cols="12" sm="12" md="12">
                     <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
                   </v-col>
@@ -68,6 +77,7 @@
           </v-card>
         </v-dialog>
       </v-toolbar>
+      
     </template>
     <template v-slot:item.actions="{ item }">
       <v-icon
@@ -83,16 +93,26 @@
       >
         mdi-delete
       </v-icon>
+      
     </template>
-    <template v-slot:no-data>
+    <!-- <template v-slot:no-data>
       <v-btn color="primary" @click="initialize">Reset</v-btn>
-    </template>
+    </template> --> 
+
   </v-data-table>
+ 
+
+    <page></page>
+ </v-container>
 </template>
 
 
 <script>
+import page from './page'
   export default {
+    components: {
+        page
+    },
     data: () => ({
       dialog: false,
       search: '',
@@ -104,9 +124,9 @@
                 },
                 { text: 'Name', value: 'name' },
                 { text: 'Year', value: 'year' },
-                { text: 'Section', value: 'section_id' },
+                { text: 'Section', value: 'section.name' },
                 { text: 'Program', value: 'program_id' },
-                { text: 'Campus', value: 'campus_id'},
+                { text: 'Campus', value: 'current_page'},
                 { text: 'Activation Code', value: 'initial_password'},
                 { text: 'Actions', value: 'actions'},
       ],

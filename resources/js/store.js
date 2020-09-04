@@ -8,6 +8,7 @@ export default new Vuex.Store({
         currentUser : user,
         auth_error : null,
         students : [],
+        studentPage: [],
     },
     getters: {
         currentUser(state){
@@ -15,6 +16,9 @@ export default new Vuex.Store({
         },
         students(state){
             return state.students
+        },
+        studentPage(state){
+            return state.studentPage
         }
     },
     mutations: {
@@ -34,6 +38,9 @@ export default new Vuex.Store({
         },
         updateStudents(state,payload){
             state.students = payload;
+        },
+        updateStudentPage(state,payload){
+            state.studentPage = payload;
         }
     },
     actions:{
@@ -43,7 +50,8 @@ export default new Vuex.Store({
         getStudents(context){
             axios.get('/api/students')
             .then((result) => {
-                context.commit('updateStudents', result.data.students)
+                context.commit('updateStudents', result.data.students.data);
+                context.commit('updateStudentPage', result.data.students);
             }).catch((err) => {
                 if(err.response.status == 401){
                     context.commit('logout');
